@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 
 from src.state import Quiz
 from src.questions import QUESTIONS
-from src.keyboards import reply_buttons, inline_buttons
+from src.keyboards import reply_buttons, inline_buttons, play_again
 
 router = Router()
 
@@ -52,6 +52,8 @@ async def handle_answer(message: Message, state: FSMContext):
     if index >= len(QUESTIONS):
          await message.answer(f"Game over. Score: {score}/{len(QUESTIONS)}")
          await state.clear()
+         await message.answer("play again?", reply_markup=play_again)
+         
     else:
         await state.update_data(index=index, score=score)
         await message.answer(f"Вопрос {index + 1}: {QUESTIONS[index]['q']}")
