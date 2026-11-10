@@ -4,11 +4,15 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from src.handlers import router
+from db.database import init_db
 
-bot = Bot(token="8706016469:AAHfXH6Ii1kmqn0owrhM8kZVvdUsSYZ_DFg")
+BOT_TOKEN = "8706016469:AAFXN_pOJ7guYdVxgB-D0i74nEwBdCyPols"
+
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
 async def main():
+    init_db()
     dp.include_router(router)
     await dp.start_polling(bot)
 
