@@ -1,5 +1,9 @@
 .venv
 .idea
 .vscode/
-.testing/
+testing/
 nodemon.json
+.env
+*.db
+*.sqlite
+*.sqlite3
